@@ -48,11 +48,9 @@ export default function ProfileCard({ onOpenOverlay }: ProfileCardProps) {
         </div>
 
         <p className="bio">
-          I am a IT student at Gordon College and an aspiring Frontend
-          Developer. I enjoy creating visuals and exploring how design and
-          technology can connect people. Outside of school, I love Cycling,
-          Nature Trips, and Listening to music, which inspire much of my
-          creativity.
+          IT student at Gordon College and aspiring frontend developer building
+          clean, accessible interfaces, I have creative inspiration from
+          cycling, nature trips, and music.
         </p>
 
         <div className="social-bg">
