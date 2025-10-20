@@ -1,30 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, useCallback } from 'react';
-import useTheme from '@/app/hooks/UseTheme';
+import Link from "next/link";
+import { useState } from "react";
+import useTheme from "@/app/hooks/UseTheme";
 
 export default function Header() {
-  const { theme, toggleTheme, toggleLabel } = useTheme();
   const [navOpen, setNavOpen] = useState(false);
-  const alertShownRef = useRef(false);
-
-  // Greeting alert on first client render (avoid StrictMode double-run in dev)
-  useEffect(() => {
-    if (alertShownRef.current) return;
-    alertShownRef.current = true;
-    const hour = new Date().getHours();
-    const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
-    alert(`${greeting}, welcome to my personal profile!`);
-  }, []);
-
-  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute('href') || '';
-    const id = href.startsWith('#') ? href.slice(1) : href;
-    const el = document.getElementById(id);
-    setNavOpen(false);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  const { theme, toggleTheme, toggleLabel } = useTheme();
 
   return (
     <nav className="navbar">
@@ -39,7 +21,7 @@ export default function Header() {
         &#9776;
       </button>
 
-      <ul className={`nav-links ${navOpen ? 'nav-active' : ''}`} id="navLinks">
+      <ul className={`nav-links ${navOpen ? "nav-active" : ""}`} id="navLinks">
         <li>
           <button
             className="nav-close"
@@ -50,15 +32,39 @@ export default function Header() {
             &times;
           </button>
         </li>
+
         <li>
-          <a href="#name" onClick={handleAnchorClick}>Home</a>
+          <Link href="/" className="nav-link" onClick={() => setNavOpen(false)}>
+            Home
+          </Link>
         </li>
         <li>
-          <a href="#contactForm" onClick={handleAnchorClick}>Contact</a>
+          <Link
+            href="/about"
+            className="nav-link"
+            onClick={() => setNavOpen(false)}
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/contact"
+            className="nav-link"
+            onClick={() => setNavOpen(false)}
+          >
+            Contact
+          </Link>
         </li>
       </ul>
 
-      <button className="darklight" id="darklight" onClick={toggleTheme}>
+      <button
+        className="darklight"
+        id="darklight"
+        onClick={toggleTheme}
+        aria-pressed={theme === "light"}
+        aria-label="Toggle color theme"
+      >
         {toggleLabel}
       </button>
     </nav>

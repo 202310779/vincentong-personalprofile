@@ -61,6 +61,46 @@
   opacity: 1.1;
 }
 
+/* make top and bottom use the exact same sizing so the shape is identical */
+.custom-shape-divider-top-1756770399,
+.custom-shape-divider-bottom-1756770719 {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 136%;           /* same width for identical scaling */
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  z-index: -2;
+  height: 260px;         /* same height for identical curvature */
+}
+
+/* top stays as-is */
+.custom-shape-divider-top-1756770399 {
+  top: 0;
+}
+
+/* bottom is rotated 180deg around its center so it mirrors the top exactly */
+.custom-shape-divider-bottom-1756770719 {
+  bottom: 0;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+/* identical svg sizes so both render the same */
+.custom-shape-divider-top-1756770399 svg,
+.custom-shape-divider-bottom-1756770719 svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-shape-divider-top-1756770399 .shape-fill,
+.custom-shape-divider-bottom-1756770719 .shape-fill {
+  fill: var(--text-secondary);
+  opacity: 1.1;
+  transition: fill 200ms ease;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -358,6 +398,61 @@ h1 {
   margin-top: 1rem;
   text-align: center;
   color: var(--text-secondary);
+}
+
+.skill-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* Make each button flex so they get equal width */
+.skill-btn {
+  flex: 1 1 0; /* grow/shrink equally */
+  min-width: 140px; /* prevents becoming too narrow on small screens */
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, transform 120ms ease,
+    box-shadow 180ms ease;
+  text-align: center; /* center label inside each equal-width button */
+}
+
+.skill-btn:hover {
+  transform: translateY(-3px);
+}
+
+.skill-btn:focus {
+  outline: 3px solid rgba(0, 0, 0, 0.08);
+  outline-offset: 3px;
+}
+
+/* active state uses theme variables so it adapts to dark/light */
+.skill-btn.active {
+  background: var(--text-secondary);
+  color: var(--card-bg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* responsive tweaks */
+@media screen and (max-width: 480px) {
+  .skill-row {
+    gap: 0.6rem;
+    justify-content: center;
+  }
+  .skill-btn {
+    flex: 1 1 120px;
+    min-width: 100px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media screen and (max-width: 1024px) {

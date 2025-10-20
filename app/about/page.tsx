@@ -1,14 +1,8 @@
-"use client";
+import SkillButtons from "@/app/components/SkillButtons";
 
-import ProfileCard from "@/app/components/ProfileCard";
-import ImageOverlay from "@/app/components/ImageOverlay";
-import { useState } from "react";
-
-export default function HomePage() {
-  const [overlayOpen, setOverlayOpen] = useState(false);
-
+export default function AboutPage() {
   return (
-    <>
+        <>
       <div className="custom-shape-divider-top-1756770399">
         <svg
           data-name="Layer 1"
@@ -22,16 +16,30 @@ export default function HomePage() {
           ></path>
         </svg>
       </div>
+      
+    <main
+      className="about-container"
+      style={{ padding: "3rem 25rem", marginTop: "140px" }}
+    >
+      <div className="about-box contact-card">
+        <h1 style={{ marginBottom: "1rem" }}>About Me</h1>
+        <p style={{ lineHeight: 1.7 }}>
+          Hello! I'm Vincent. I'm an IT student at Gordon College and an
+          aspiring frontend developer. I enjoy building interfaces, learning
+          UI/UX, and experimenting with small web animations. This page is part
+          of the personal profile demo converted to Next.js.
+        </p>
 
-      <main>
-        <ProfileCard onOpenOverlay={() => setOverlayOpen(true)} />
-        <ImageOverlay
-          open={overlayOpen}
-          onClose={() => setOverlayOpen(false)}
-        />
-      </main>
+        <section style={{ marginTop: "1.5rem" }}>
+          <h2 style={{ marginBottom: ".5rem" }}>Skills</h2>
 
-      <div className="custom-shape-divider-bottom-1756770719">
+          {/* NEW: skill buttons in a row */}
+          <SkillButtons />
+        </section>
+      </div>
+    </main>
+
+     <div className="custom-shape-divider-bottom-1756770719">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"

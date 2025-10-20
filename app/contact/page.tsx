@@ -1,14 +1,8 @@
-"use client";
+import ContactCard from "@/app/components/ContactCard";
 
-import ProfileCard from "@/app/components/ProfileCard";
-import ImageOverlay from "@/app/components/ImageOverlay";
-import { useState } from "react";
-
-export default function HomePage() {
-  const [overlayOpen, setOverlayOpen] = useState(false);
-
+export default function ContactPage() {
   return (
-    <>
+        <>
       <div className="custom-shape-divider-top-1756770399">
         <svg
           data-name="Layer 1"
@@ -22,16 +16,12 @@ export default function HomePage() {
           ></path>
         </svg>
       </div>
+      
+    <main style={{ padding: "1rem 1rem", maxWidth: 800, margin: "60px auto" }}>
 
-      <main>
-        <ProfileCard onOpenOverlay={() => setOverlayOpen(true)} />
-        <ImageOverlay
-          open={overlayOpen}
-          onClose={() => setOverlayOpen(false)}
-        />
-      </main>
-
-      <div className="custom-shape-divider-bottom-1756770719">
+      <ContactCard />
+    </main>
+ <div className="custom-shape-divider-bottom-1756770719">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -45,5 +35,5 @@ export default function HomePage() {
         </svg>
       </div>
     </>
-  );
+);
 }
